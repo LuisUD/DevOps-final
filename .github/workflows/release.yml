@@ -66,7 +66,7 @@ jobs:
       uses: 'google-github-actions/upload-cloud-storage@v1'
       with:
         path: 'bom_file_output/bom.xml'
-        destination: "$BUCKET_NAME/bom.xml"
+        destination: ${{ env.BUCKET_NAME }}
 
     - name: 'Docker auth'
       run: |-
