@@ -73,8 +73,9 @@ jobs:
     - name: Build
       run: |-
         pwd
+        ls -l
         docker build \
-          --file ./Microservice/Dockerfile \
+          --file /Microservice/Dockerfile \
           --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \   
