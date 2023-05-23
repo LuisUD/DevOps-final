@@ -11,6 +11,7 @@ env:
   GKE_ZONE: us-central1-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   REPOSITORY: gar-final-devops # TODO: update to Artifact Registry docker repository
+  BUCKET_NAME: cs-final-devops
   IMAGE: dotnet-microservice
 
 jobs:
@@ -64,8 +65,8 @@ jobs:
     - id: 'upload-file'
       uses: 'google-github-actions/upload-cloud-storage@v1'
       with:
-        path: '/bom_file_output/bom.xml'
-        destination: 'cs-final-devops/bom.xml'
+        path: 'bom_file_output/bom.xml'
+        destination: "$BUCKET_NAME/bom.xml"
 
     - name: 'Docker auth'
       run: |-
