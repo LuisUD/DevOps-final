@@ -62,13 +62,14 @@ jobs:
       with:
         project_id: '${{ env.PROJECT_ID }}'
 
-    - id: 'upload-file'
+    - name: 'Upload bom file to google storage'
       uses: 'google-github-actions/upload-cloud-storage@v1'
       with:
         path: 'bom_file_output/bom.xml'
+        process_gcloudignore: false
         destination: ${{ env.BUCKET_NAME }}
 
-    - name: 'Docker auth'
+    - name: 'Docker autentication in google artifact registry'
       run: |-
         gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
 
@@ -80,7 +81,7 @@ jobs:
     #    location: ${{ env.GKE_ZONE }}
 
     # Build the Docker image
-    - name: Build
+    - name: Build docker image
       run: |-
         cd Microservice
         docker build \
@@ -89,9 +90,10 @@ jobs:
           --build-arg GITHUB_REF="$GITHUB_REF" \
           .
     # Push the Docker image to Google Artifact Registry
-    - name: Publish
+    - name: Publish docker image to google artifact registry
       run: |-
         docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+
     # Set up kustomize
     #- name: Set up Kustomize
     #  run: |-
