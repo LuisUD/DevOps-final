@@ -94,6 +94,14 @@ jobs:
       run: |-
         docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
 
+    - name: Uploading BOM file to dependency track
+      uses: DependencyTrack/gh-upload-sbom@v2.0.0
+      with:
+        serverhostname: 'https://dt.endpoints.proyecto-final-devops.cloud.goog/'
+        apikey: ${{ secrets.DT_API_KEY }}
+        projectname: 'Prueba'
+        projectversion: ''
+        
     # Set up kustomize
     #- name: Set up Kustomize
     #  run: |-
