@@ -6,7 +6,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
     protocol: TCP
     name: http
   selector:
@@ -42,19 +42,19 @@ spec:
     spec:
       containers:
       - name: clouddemo-netcore
-        image: dotnet-microservice
+        image: europe-southwest1-docker.pkg.dev/proyecto-final-devops/gar-final-devops/dotnet-microservice
         ports:
-          - containerPort: 8080
+          - containerPort: 80
         livenessProbe:      # Used by deployment controller
           httpGet:
             path: /HealthCheck
-            port: 8080
+            port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
         readinessProbe:     # Used by Ingress/GCLB
           httpGet:
             path: /HealthCheck
-            port: 8080
+            port: 80
           initialDelaySeconds: 3
           periodSeconds: 5
         resources:
