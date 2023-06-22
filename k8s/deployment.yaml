@@ -47,11 +47,11 @@ spec:
           httpGet:
             path: /HealthCheck
             port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 15
+          periodSeconds: 15
         readinessProbe:     # Used by Ingress/GCLB
           httpGet:
             path: /HealthCheck
             port: 80
-          initialDelaySeconds: 3
-          periodSeconds: 5
+          initialDelaySeconds: 1
+          periodSeconds: 15
