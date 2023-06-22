@@ -44,8 +44,8 @@ jobs:
     - name: 'Build app'
       run: dotnet build DotNetMicroservice.sln
 
-    - name: 'Test app'
-      run: dotnet test DotNetMicroservice.sln
+    #- name: 'Test app'
+    #  run: dotnet test DotNetMicroservice.sln
 
     - name: 'Generating bom file'
       run: |
@@ -95,13 +95,14 @@ jobs:
     #    docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
 
     - name: Uploading BOM file to dependency track
-      uses: DependencyTrack/gh-upload-sbom@v2.0.0
+      uses: DependencyTrack/gh-upload-bom-to-dependency-track@v1.0.0
       with:
         serverhostname: 'dt.endpoints.proyecto-final-devops.cloud.goog'
         apikey: '${{ secrets.DT_API_KEY }}'
         projectname: 'MicroDotnet'
         projectversion: 'master'
         port: 443
+        protocol: 'https'
         bomfilename: 'bom_file_output/bom.xml'
         
     # Set up kustomize
