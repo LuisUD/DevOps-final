@@ -1,6 +1,5 @@
 using Microservice.Models;
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
 using Microservice.Repository;
 
 namespace Microservice.Services;
