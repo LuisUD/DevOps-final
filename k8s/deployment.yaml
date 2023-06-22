@@ -55,8 +55,3 @@ spec:
             port: 8080
           initialDelaySeconds: 3
           periodSeconds: 5
-        resources:
-          limits:
-            memory: 1024Mi
-          requests:
-            memory: 256Mi  
