@@ -125,4 +125,4 @@ jobs:
     # Deploy to GKE
     #
     - name: Deploy to GKE
-      run: kubectl apply -f "k8s/$GKE_ZONE.yaml"
+      run: kubectl apply -f "k8s/$DEPLOYMENT_NAME.yaml"
