@@ -36,7 +36,7 @@ jobs:
           7
 
     - name: 'Setup CycloneDX'
-      run: dotnet tool install --global CycloneDX      
+      run: dotnet tool install --global CycloneDX --version 2.7.0  
 
     - name: 'Restore app'
       run: dotnet restore DotNetMicroservice.sln
