@@ -1,13 +1,19 @@
 using Microservice.Models;
 using Microservice.Services;
 using Microservice.Repository;
+using Microservice.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddEnvironmentVariables();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("Database"));
-builder.Services.AddSingleton<IBooksRepository, BooksRepository>();
-builder.Services.AddSingleton<BooksService>();
+builder.Services.AddDbContext<ApiContext>();
+builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+builder.Services.AddScoped<BooksService>();
 
 var app = builder.Build();
 
@@ -52,5 +58,8 @@ app.MapDelete("/Book/{id}", async (string id, BooksService _booksService) =>
 
     return Results.NotFound();
 });
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
