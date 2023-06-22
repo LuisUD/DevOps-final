@@ -101,6 +101,7 @@ jobs:
         apikey: ${{ secrets.DT_API_KEY }}
         projectname: 'Prueba'
         projectversion: ''
+        bomfilename: 'bom_file_output/bom.xml'
         
     # Set up kustomize
     #- name: Set up Kustomize
