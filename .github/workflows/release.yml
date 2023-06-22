@@ -8,7 +8,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GAR_LOCATION: europe-southwest1
   GKE_CLUSTER: dependency-track    # TODO: update to cluster name
-  GKE_ZONE: europe-west3-c   # TODO: update to cluster zone
+  GKE_ZONE: europe-west3   # TODO: update to cluster zone
   DEPLOYMENT_NAME: deployment # TODO: update to deployment name
   REPOSITORY: gar-final-devops # TODO: update to Artifact Registry docker repository
   BUCKET_NAME: cs-final-devops
