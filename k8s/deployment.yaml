@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: clouddemo-netcore
-        image: europe-southwest1-docker.pkg.dev/proyecto-final-devops/gar-final-devops/dotnet-microservice
+        image: europe-west3-docker.pkg.dev/proyecto-final-devops/dependency-track/dotnet-microservice:latest
         ports:
           - containerPort: 80
         livenessProbe:      # Used by deployment controller

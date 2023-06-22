@@ -6,11 +6,11 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GAR_LOCATION: europe-southwest1
+  GAR_LOCATION: europe-west3
   GKE_CLUSTER: dependency-track    # TODO: update to cluster name
   GKE_ZONE: europe-west3   # TODO: update to cluster zone
   DEPLOYMENT_NAME: deployment # TODO: update to deployment name
-  REPOSITORY: gar-final-devops # TODO: update to Artifact Registry docker repository
+  REPOSITORY: dependency-track # TODO: update to Artifact Registry docker repository
   BUCKET_NAME: cs-final-devops
   IMAGE: dotnet-microservice
 
@@ -91,6 +91,7 @@ jobs:
         cd Microservice
         docker build \
           --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
+          --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:latest" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           .
