@@ -81,26 +81,26 @@ jobs:
     #    location: ${{ env.GKE_ZONE }}
 
     # Build the Docker image
-    - name: Build docker image
-      run: |-
-        cd Microservice
-        docker build \
-          --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" \
+    #- name: Build docker image
+    #  run: |-
+    #    cd Microservice
+    #    docker build \
+    #      --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
+    #      --build-arg GITHUB_SHA="$GITHUB_SHA" \
+    #      --build-arg GITHUB_REF="$GITHUB_REF" \
           .
     # Push the Docker image to Google Artifact Registry
-    - name: Publish docker image to google artifact registry
-      run: |-
-        docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+    #- name: Publish docker image to google artifact registry
+    #  run: |-
+    #    docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
 
     - name: Uploading BOM file to dependency track
       uses: DependencyTrack/gh-upload-sbom@v2.0.0
       with:
-        serverhostname: 'https://dt.endpoints.proyecto-final-devops.cloud.goog/'
-        apikey: ${{ secrets.DT_API_KEY }}
-        projectname: 'Prueba'
-        projectversion: ''
+        serverhostname: 'https://dt.endpoints.proyecto-final-devops.cloud.goog'
+        apikey: '${{ secrets.DT_API_KEY }}'
+        projectname: 'MicroDotnet'
+        projectversion: 'master'
         bomfilename: 'bom_file_output/bom.xml'
         
     # Set up kustomize
