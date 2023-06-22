@@ -16,4 +16,6 @@ WORKDIR /app
 
 COPY --from=build-env publish .
 
+EXPOSE 8080
+
 ENTRYPOINT ["./Microservice"]

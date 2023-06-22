@@ -6,7 +6,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8080
   selector:
     app: clouddemo-netcore
   type: NodePort
@@ -42,16 +42,21 @@ spec:
       - name: clouddemo-netcore
         image: europe-west3-docker.pkg.dev/proyecto-final-devops/dependency-track/dotnet-microservice:latest
         ports:
-          - containerPort: 80
+          - containerPort: 8080
         livenessProbe:      # Used by deployment controller
           httpGet:
             path: /HealthCheck
-            port: 80
-          initialDelaySeconds: 15
-          periodSeconds: 15
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
         readinessProbe:     # Used by Ingress/GCLB
           httpGet:
             path: /HealthCheck
-            port: 80
-          initialDelaySeconds: 1
-          periodSeconds: 15
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        resources:
+          limits:
+            memory: 1024Mi
+          requests:
+            memory: 256Mi  
