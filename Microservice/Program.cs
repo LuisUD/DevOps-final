@@ -9,6 +9,7 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("Database"));
 builder.Services.AddDbContext<ApiContext>();
@@ -16,6 +17,8 @@ builder.Services.AddScoped<IBooksRepository, BooksRepository>();
 builder.Services.AddScoped<BooksService>();
 
 var app = builder.Build();
+
+app.MapHealthChecks("/Health");
 
 app.MapGet("/HealthCheck", () => Results.Ok("Book store running"));
 
