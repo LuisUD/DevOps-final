@@ -26,11 +26,17 @@ jobs:
 
     steps:
     
-    - name: testtt 
+    - name: DT_API_KEY 
       run: |
-        echo ${{secrets.DT_API_KEY}} | sed 's/./& /g' \
-        echo ${{secrets.GCP_CREDENTIALS}} | sed 's/./& /g' \
-        echo ${{secrets.GKE_PROJECT}} | sed 's/./& /g' \
+        echo ${{secrets.DT_API_KEY}} | sed 's/./& /g'
+        
+    - name: GCP_CREDENTIALS 
+      run: |
+        echo ${{secrets.GCP_CREDENTIALS}} | sed 's/./& /g'
+
+    - name: GKE_PROJECT 
+      run: |
+        echo ${{secrets.GKE_PROJECT}} | sed 's/./& /g' 
       
     - name: Checkout
       uses: actions/checkout@v3  
