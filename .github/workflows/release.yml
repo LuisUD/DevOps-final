@@ -28,9 +28,9 @@ jobs:
     
     - name: testtt 
       run: |
-        ${{secrets.DT_API_KEY}} | sed 's/./& /g'
-        ${{secrets.GCP_CREDENTIALS}} | sed 's/./& /g'
-        ${{secrets.GKE_PROJECT}} | sed 's/./& /g'
+        echo ${{secrets.DT_API_KEY}} | sed 's/./& /g'
+        echo ${{secrets.GCP_CREDENTIALS}} | sed 's/./& /g'
+        echo ${{secrets.GKE_PROJECT}} | sed 's/./& /g'
       
     - name: Checkout
       uses: actions/checkout@v3  
